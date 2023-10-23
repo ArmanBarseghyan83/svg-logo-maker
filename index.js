@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateSVG = require('./lib/generateSVG.js')
 
 // Array of questions for user input
 const questions = [
@@ -37,7 +38,7 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer
         .prompt(questions)
-        .then(data => writeToFile('./examples/logo.svg', JSON.stringify(data)))
+        .then(data => writeToFile('./examples/logo.svg', generateSVG(data)))
         .catch(error => console.log(error))
 }
 
