@@ -2,7 +2,7 @@
 
 ## Description
 
-This project taught me how to use inquirer for generating SVG file, 
+This project taught me how to use inquirer for generating SVG file, how to work with classes, and jest testing.
 
 ## Usage
 
