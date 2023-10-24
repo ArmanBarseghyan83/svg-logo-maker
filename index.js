@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const { isValidColorName, isValidRGB, isValidHSL } = require('is-valid-css-color');
 const fs = require('fs');
 const generateSVG = require('./lib/generateSVG.js')
 
@@ -38,7 +39,20 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer
         .prompt(questions)
-        .then(data => writeToFile('./examples/logo.svg', generateSVG(data)))
+        .then(data => {
+            if (!data.logoText || data.logoText.length > 3) {
+                console.log('Logo text must between 1 to 3 characters!')
+            }
+            else if (!isValidColorName(data.textColor) && !isValidRGB(data.textColor) && !isValidHSL(data.textColor)) {
+                console.log('invalid text color!')
+            }
+            else if (!isValidColorName(data.shapeColor) && !isValidRGB(data.shapeColor) && !isValidHSL(data.shapeColor)) {
+                console.log('invalid shape color!')
+            }
+            else {
+                writeToFile('./examples/logo.svg', generateSVG(data))
+            }
+        })
         .catch(error => console.log(error))
 }
 
