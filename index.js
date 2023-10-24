@@ -40,6 +40,7 @@ function init() {
     inquirer
         .prompt(questions)
         .then(data => {
+            // Validate user inputs using 'is-valid-css-color' package
             if (!data.logoText || data.logoText.length > 3) {
                 console.log('Logo text must between 1 to 3 characters!')
             }
